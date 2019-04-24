@@ -1,6 +1,8 @@
 # Target outputs
 target/
 
+.vscode 
+
 # Compiled class file
 *.class
 
