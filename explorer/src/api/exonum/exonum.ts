@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { KeyPair } from './keyPair'
 
-const exonum = require('exonum-client') as any
+const exonum = require('exonum-client/dist/exonum-client.min.js') as any
 
 const API_URL = '/api/services/neo4j_blockchain/v1'
 const EXPLORER_URL = '/api/explorer/v1'
@@ -25,15 +25,16 @@ const queriesMessage = exonum.newMessage({
 })
 
 function sendTx(query: string, keyPair: KeyPair): Promise<{ tx_hash: string }> {
-    keyPair = exonum.keyPair()
-
     const data = {
-        queries: 'test',
-        datetime: 'a',
+        queries: query,
+        datetime: Date.now().toString(),
         pub_key: keyPair.publicKey,
     }
 
     const signature = queriesMessage.sign(keyPair.secretKey, data)
+
+    console.log(`signature ${signature}`)
+
     queriesMessage.signature = signature
     const hash = queriesMessage.hash(data) as string
 
