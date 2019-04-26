@@ -104,6 +104,7 @@ impl Neo4JApi {
         state: &ServiceApiState,
         query: NodeHistoryQuery,
     ) -> api::Result<Vec<NodeHistoryLine>> {
+        println!("Getting node history");
         let snapshot = state.snapshot();
         let schema = Schema::new(snapshot);
         let idx = schema.node_history(query.node_uuid());
