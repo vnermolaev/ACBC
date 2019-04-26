@@ -54,4 +54,6 @@ app.get('/', function (req, res) {
 
 app.listen(port)
 
+process.title = 'f2bc'
+
 console.log(`App is served at http://localhost:${port}`)
