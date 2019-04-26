@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { KeyPair } from './keyPair'
 
-const exonum = require('exonum-client/dist/exonum-client.min.js') as any
+const exonum = require('exonum-client/dist/exonum-client.js') as any
 
-const API_URL = '/api/services/neo4j_blockchain/v1'
+const SERVICE_URL = '/api/services/neo4j_blockchain/v1'
 const EXPLORER_URL = '/api/explorer/v1'
 
 const PROTOCOL_VERSION = 0
@@ -38,9 +38,13 @@ function sendTx(query: string, keyPair: KeyPair): Promise<{ tx_hash: string }> {
     queriesMessage.signature = signature
     const hash = queriesMessage.hash(data) as string
 
+    console.log(`${SERVICE_URL}/insert_transaction`)
+    console.log(queriesMessage)
+    console.log(data)
+
     return queriesMessage
         .send(
-            `${API_URL}/insert_transaction`,
+            `${SERVICE_URL}/insert_transaction`,
             `${EXPLORER_URL}/transactions?hash=`,
             data,
             signature,
@@ -48,20 +52,21 @@ function sendTx(query: string, keyPair: KeyPair): Promise<{ tx_hash: string }> {
             ATTEMPT_TIMEOUT,
         )
         .then(() => {
+            console.log(`${SERVICE_URL}/transactions?hash=${hash}`)
             return { tx_hash: hash }
         })
 }
 
-function getTx(hash: string): Promise<any> {
-    return axios
-        .get(`${API_URL}/transaction?hash_string=${hash}`)
-        .then(response => response.data)
-}
+// function getTx(hash: string): Promise<any> {
+//     return axios
+//         .get(`${API_URL}/transaction?hash_string=${hash}`)
+//         .then(response => response.data)
+// }
 
 function getNodeHistory(uuid: string): Promise<any> {
-    return axios
-        .get(`${API_URL}/node_history?node_uuid=${uuid}`)
-        .then(response => response.data)
+    const url = `${SERVICE_URL}/node_history?node_uuid=${uuid}`
+    console.log(url)
+    return axios.get(url).then(response => response.data)
 }
 
 function getBlocks(count: number, latest: number, skipEmpty: boolean): void {
@@ -81,4 +86,4 @@ function getBlock(height: number): Promise<any> {
         .then(response => response.data)
 }
 
-export { sendTx, getTx, getNodeHistory, getBlocks, getBlock }
+export { sendTx, getNodeHistory, getBlocks, getBlock }
