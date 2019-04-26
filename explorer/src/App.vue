@@ -41,8 +41,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Vue, Component } from 'vue-property-decorator'
 
 @Component({})
 export default class App extends Vue {
@@ -53,3 +52,7 @@ export default class App extends Vue {
     ]
 }
 </script>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+</style>
