@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "go": "npm run build && node service/server.js",
+    "go": "node service/server.js",
+    "buildgo": "npm run build && npm run go",
     "start": "nodemon -e js,ts,vue --watch service --watch src --exec \"npm run go\""
   },
   "dependencies": {
