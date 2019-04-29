@@ -27,21 +27,18 @@ docker exec -w /ACBC/backend/ node1 ./configure/generate_common_config.sh $node_
 #Generating conf for each node
 for i in $(seq 1 $((node_count)))
 do
-    #docker exec -w /Exonum-Neo4j/backend/ node$i ./reConfTestNode.sh $i $target
     docker exec -w /ACBC/backend/ node$i ./configure/configure_node.sh $i $target
 done
 
 #Finalizing conf for each node
 for i in $(seq 1 $((node_count)))
 do
-    #docker exec -w /Exonum-Neo4j/backend/ node$i ./finalizeTesting.sh $i $node_count $target
     docker exec -w /ACBC/backend/ node$i ./configure/finalize_config.sh $i $node_count $target
 done
 
 #Run all the nodes
 for i in $(seq 1 $((node_count)))
 do
-    # docker exec -d -w /Exonum-Neo4j/backend/ node$i ./runTestNode.sh $i $target
     docker exec -d -w /ACBC/backend/ node$i ./configure/run_node.sh $i $target
 done
 
@@ -51,7 +48,6 @@ sleep 5
 #Setup frontend
 for i in $(seq 1 $((node_count)))
 do
-    # docker exec -w /Exonum-Neo4j/frontend/ node$i ./genEnv.sh $i localhost
     docker exec -w /ACBC/explorer/ node$i ./generate_environment.sh $i localhost
     docker exec -d -w /ACBC/explorer/ node$i npm run go
 done
