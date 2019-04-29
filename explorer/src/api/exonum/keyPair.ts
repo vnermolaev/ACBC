@@ -1,6 +1,6 @@
 interface KeyPair {
-    publicKey: any
-    secretKey: any
+    publicKey: string
+    secretKey: string
 }
 
 export { KeyPair }

@@ -33,14 +33,12 @@ function sendTx(query: string, keyPair: KeyPair): Promise<{ tx_hash: string }> {
 
     const signature = queriesMessage.sign(keyPair.secretKey, data)
 
-    console.log(`signature ${signature}`)
-
     queriesMessage.signature = signature
     const hash = queriesMessage.hash(data) as string
 
-    console.log(`${SERVICE_URL}/insert_transaction`)
-    console.log(queriesMessage)
-    console.log(data)
+    // console.log(`Sending to\n${SERVICE_URL}/insert_transaction`)
+    // console.log(queriesMessage)
+    // console.log(data)
 
     return queriesMessage
         .send(
@@ -52,38 +50,27 @@ function sendTx(query: string, keyPair: KeyPair): Promise<{ tx_hash: string }> {
             ATTEMPT_TIMEOUT,
         )
         .then(() => {
-            console.log(`${SERVICE_URL}/transactions?hash=${hash}`)
             return { tx_hash: hash }
         })
 }
 
-// function getTx(hash: string): Promise<any> {
-//     return axios
-//         .get(`${API_URL}/transaction?hash_string=${hash}`)
-//         .then(response => response.data)
-// }
-
-function getNodeHistory(uuid: string): Promise<any> {
-    const url = `${SERVICE_URL}/node_history?node_uuid=${uuid}`
-    console.log(url)
-    return axios.get(url).then(response => response.data)
-}
-
-function getBlocks(count: number, latest: number, skipEmpty: boolean): void {
-    // let suffix = ''
-    // if (!isNaN(parseInt(latest))) {
-    //     suffix += '&latest=' + latest
-    // }
-    // if (skipEmpty) {
-    //     suffix += '&skip_empty_blocks=true'
-    // }
-    // return axios.get(EXPLORER_URL + `blocks?count=${count}${suffix}`).then(response => response.data);
-}
-
-function getBlock(height: number): Promise<any> {
+function getTx(hash: string): Promise<any> {
+    const url = `${EXPLORER_URL}/transactions?hash=${hash}`
+    // console.log(`Getting ${url}`)
     return axios
-        .get(`${EXPLORER_URL}block?height=${height}`)
+        .get(url)
         .then(response => response.data)
 }
 
-export { sendTx, getNodeHistory, getBlocks, getBlock }
+interface NodeModification {
+    transaction_id: string
+    description: string
+}
+
+function getNodeHistory(uuid: string): Promise<NodeModification[]> {
+    const url = `${SERVICE_URL}/node_history?node_uuid=${uuid}`
+    // console.log(url)
+    return axios.get(url).then(response => response.data)
+}
+
+export { sendTx, getTx, NodeModification, getNodeHistory }

@@ -1,4 +1,10 @@
 import { KeyPair } from './exonum/keyPair'
-import { sendTx, getNodeHistory } from './exonum/exonum'
+import { sendTx, getTx, NodeModification, getNodeHistory } from './exonum/exonum'
 
-export { KeyPair, sendTx, getNodeHistory }
+export {
+    KeyPair,
+    sendTx,
+    getTx,
+    NodeModification,
+    getNodeHistory,
+}
