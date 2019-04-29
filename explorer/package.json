@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
+    "@types/node": "^11.13.7",
     "@vue/cli-plugin-eslint": "^3.6.0",
     "@vue/cli-plugin-typescript": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
