@@ -8,7 +8,7 @@ const { join } = require('path')
 
 // Parse configuration
 const dotenv = require('dotenv')
-const result = dotenv.config({ path: join(__dirname, '..', 'service', '.env') })
+const result = dotenv.config({ path: join(__dirname, '..', '.env') })
 if (result.error) {
     leave(result.error)
 }
