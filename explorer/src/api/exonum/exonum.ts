@@ -57,9 +57,7 @@ function sendTx(query: string, keyPair: KeyPair): Promise<{ tx_hash: string }> {
 function getTx(hash: string): Promise<any> {
     const url = `${EXPLORER_URL}/transactions?hash=${hash}`
     // console.log(`Getting ${url}`)
-    return axios
-        .get(url)
-        .then(response => response.data)
+    return axios.get(url).then(response => response.data)
 }
 
 interface NodeModification {
