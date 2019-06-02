@@ -11,10 +11,10 @@ frontend_port=3000
 target="release"
 
 
-#Starting nodes and neo4j
+# Starting nodes and neo4j
 for i in $(seq 1 $((node_count)))
 do
-    echo docker run -t -d -i --name node$i -p 820$i:8200 -p 747$i:7474 -p 768$i:7687 -p 300$i:3005 -v $volume_name:/shared-config $image_name
+    # echo docker run -t -d -i --name node$i -p 820$i:8200 -p 747$i:7474 -p 768$i:7687 -p 300$i:3005 -v $volume_name:/shared-config $image_name
     docker run -t -d -i --name node$i -p 820$i:8200 -p 747$i:7474 -p 768$i:7687 -p 300$i:3005 -v $volume_name:/shared-config $image_name
     docker exec -w /ACBC/ node$i git pull
     docker exec node$i neo4j-admin set-initial-password $neo4j_password
@@ -48,6 +48,10 @@ sleep 5
 #Setup frontend
 for i in $(seq 1 $((node_count)))
 do
+    # Generate environment variables
     docker exec -w /ACBC/explorer/ node$i ./generate_environment.sh $i localhost
+    # Build the front end
+    docket exec -w /ACBC/explorer/ node$i npm run build
+    # Serve
     docker exec -d -w /ACBC/explorer/ node$i npm run go
 done
