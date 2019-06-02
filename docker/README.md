@@ -17,7 +17,7 @@ With the dockerfile a fully functional node running our solution can be created.
 2. Run the following command to generate the docker image.
 
    ```bash
-   docker build --tag exonum_neo4j .
+   docker build --tag acbc .
    ```
 
 3. Create a shared volume to store the config files which are used by the docker containers.
@@ -58,12 +58,14 @@ With the dockerfile a fully functional node running our solution can be created.
 
 5. For each node, you can access:
 
-   - neo4j : 747[1]
-   - exonum : 820[1]
-   - frontend : 300[1]
-     on localhost with [1], the number of the node.
+   - neo4j : 747[1], e.g. [localhost:7471](http://localhost:7471)
 
-   For example, [localhost:3001](http://localhost:3001) will open the frontend of Node 1.
+     - Bolt port: bolt://localhost:768[1]
+     - User: neo4j
+     - Password: neo4j
+
+   - exonum : 820[1]
+   - frontend : 300[1], e.g., [localhost:3001](http://localhost:3001) will open the frontend of Node 1.
 
 ## Regenerate docker image
 
@@ -80,7 +82,7 @@ The **--no-cache** parameter will ensure that a clean image will be created, suc
 To delete the created docker image:
 
 ```bash
-docker rmi exonum_neo4j
+docker rmi acbc
 ```
 
 To delete the created docker, first stop the containers:
