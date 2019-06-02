@@ -51,7 +51,7 @@ do
     # Generate environment variables
     docker exec -w /ACBC/explorer/ node$i ./generate_environment.sh $i localhost
     # Build the front end
-    docket exec -w /ACBC/explorer/ node$i npm run build
+    docker exec -w /ACBC/explorer/ node$i npm run build
     # Serve
     docker exec -d -w /ACBC/explorer/ node$i npm run go
 done
