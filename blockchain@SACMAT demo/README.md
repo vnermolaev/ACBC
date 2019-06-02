@@ -8,7 +8,7 @@ Use of blockchain allows to aid investigation in case such elevations were disco
 
 ## Scenario
 
-### Chief Security Officer
+#### Chief Security Officer
 
 Builder is granted an 8-to-20 access to General Office.
 
@@ -22,7 +22,7 @@ Certified Employee is granted a 24/7 access to Critical Facility
 CREATE (:R {name: "CertEmpl"})451-[:GRANTED {slot: "00:00-23:59"}]->(:D {name: "CritFty"})
 ```
 
-### Facility manager
+#### Facility manager
 
 Facility manager defines what Critical Facility and General Office are. General Office includes Office and Conference Room.
 
@@ -41,7 +41,7 @@ CREATE (cf)-[:INCLUDES]->(go)
 CREATE (cf)-[:INCLUDES]->(:D {name: "ChemLab"})
 ```
 
-### HR
+#### HR
 
 HR personnel now hire people.
 Jane Doe is assigned to the role of `CertEmpl`.
@@ -58,7 +58,7 @@ MATCH (b:R {name: "Bldr"})
 CREATE (:P {name: "Jan Jansen"})-[:ASSIGNED]->(b)
 ```
 
-### Site Security Officer
+#### Site Security Officer
 
 Jan Jansen is assigned to the role of `CertEmpl`.
 
