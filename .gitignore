@@ -35,3 +35,8 @@ hs_err_pid*
 # Intellij editor files 
 .idea
 *.iml
+
+.settings
+.classpath
+.factorypath
+.project
