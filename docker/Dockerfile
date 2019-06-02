@@ -60,8 +60,7 @@ RUN apt-get update -y &&\
 RUN npm install npm@latest -g &&\
     /bin/bash -c "hash -d npm"		
 RUN cd /ACBC/explorer/ &&\
-    npm install &&\
-    npm run build
+    npm install
 
 #Add nano as useful program for debugging
 RUN apt-get install nano
