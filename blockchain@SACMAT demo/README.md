@@ -19,7 +19,7 @@ CREATE (:R {name: "Bldr"})-[:GRANTED {slot: "08:00-20:00"}]->(:D {name: "GenOff"
 Certified Employee is granted a 24/7 access to Critical Facility
 
 ```
-CREATE (:R {name: "CertEmpl"})451-[:GRANTED {slot: "00:00-23:59"}]->(:D {name: "CritFty"})
+CREATE (:R {name: "CertEmpl"})-[:GRANTED {slot: "00:00-23:59"}]->(:D {name: "CritFty"})
 ```
 
 #### Facility manager
