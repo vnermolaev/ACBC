@@ -40,3 +40,7 @@ hs_err_pid*
 .classpath
 .factorypath
 .project
+
+# Service files
+__reConfSingle.sh
+__runSingle.sh
