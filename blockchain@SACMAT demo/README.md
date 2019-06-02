@@ -27,7 +27,8 @@ CREATE (:R {name: "CertEmpl"})451-[:GRANTED {slot: "00:00-23:59"}]->(:D {name: "
 Facility manager defines what Critical Facility and General Office are. General Office includes Office and Conference Room.
 
 ```
-MATCH (go:D {name: "GenOff"})455CREATE (go)-[:INCLUDES]->(:D {name: "Off"})
+MATCH (go:D {name: "GenOff"})
+CREATE (go)-[:INCLUDES]->(:D {name: "Off"})
 CREATE (go)-[:INCLUDES]->(:D {name: "Conf"})
 ```
 
@@ -53,7 +54,8 @@ CREATE (:P {name: "Jane Doe"})-[:ASSIGNED]->(ce)
 Jan Jansen is assigned to the role of `Bldr`.
 
 ```
-MATCH (b:R {name: "Bldr"})468CREATE (:P {name: "Jan Jansen"})-[:ASSIGNED]->(b)
+MATCH (b:R {name: "Bldr"})
+CREATE (:P {name: "Jan Jansen"})-[:ASSIGNED]->(b)
 ```
 
 ### Site Security Officer
@@ -70,6 +72,6 @@ CREATE (jj)-[:ASSIGNED]->(ce)
 
 A simple query to the policy confirms the fact that Jan Jansen gets, in fact more access than it was intended by CSO.
 
-```cypher
-MATCH (jj:P {name: "Jan Jansen"})480-[:ASSIGNED]->(:R)-[*0..]-(d:D) RETURN DISTINCT d
+```
+MATCH (jj:P {name: "Jan Jansen"})-[:ASSIGNED]->(:R)-[*0..]-(d:D) RETURN DISTINCT d
 ```
