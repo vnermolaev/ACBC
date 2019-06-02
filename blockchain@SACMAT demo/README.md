@@ -70,6 +70,6 @@ CREATE (jj)-[:ASSIGNED]->(ce)
 
 A simple query to the policy confirms the fact that Jan Jansen gets, in fact more access than it was intended by CSO.
 
-```
+```cypher
 MATCH (jj:P {name: "Jan Jansen"})480-[:ASSIGNED]->(:R)-[*0..]-(d:D) RETURN DISTINCT d
 ```
