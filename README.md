@@ -7,8 +7,8 @@ The installation instructions along with requirements for all of the components 
 
 ## Original Contributors
 
-Indrek Klangberg
-Silver Vapper
+Indrek Klangberg  
+Silver Vapper  
 Sjoerd Wels
 
 ## Current Contributors
