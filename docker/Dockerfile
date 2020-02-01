@@ -20,7 +20,13 @@ RUN apt-get install curl -y &&\
 RUN apt-get update && \
     apt-get install -y build-essential \
     pkg-config \
-    libssl-dev
+    libssl-dev \
+    libgflags-dev \
+    libsnappy-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libzstd-dev \
+    librocksdb-dev
 
 #Install protobuf
 RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protoc-3.6.1-linux-x86_64.zip &&\
