@@ -34,10 +34,6 @@ RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.
     unzip -o protoc-3.6.1-linux-x86_64.zip -d /usr/local bin/protoc &&\
     rm -f protoc-3.6.1-linux-x86_64.zip
 
-#Start Exonum service
-RUN cd ACBC/backend &&\
-    . ~/.cargo/env &&\
-    cargo build --release
 
 #Install Neo4j
 RUN apt-get install software-properties-common -y
@@ -70,5 +66,10 @@ RUN cd /ACBC/explorer/ &&\
 
 #Add nano as useful program for debugging
 RUN apt-get install nano
+
+#Start Exonum service
+RUN cd ACBC/backend &&\
+    . ~/.cargo/env &&\
+    cargo b --release
 
 EXPOSE 8200 8080 7474 7473
