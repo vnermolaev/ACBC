@@ -60,7 +60,7 @@ function getTx(hash: string): Promise<any> {
     return axios.get(url).then(response => response.data)
 }
 
-interface NodeModification {
+export interface NodeModification {
     transaction_id: string
     description: string
 }
@@ -71,4 +71,4 @@ function getNodeHistory(uuid: string): Promise<NodeModification[]> {
     return axios.get(url).then(response => response.data)
 }
 
-export { sendTx, getTx, NodeModification, getNodeHistory }
+export { sendTx, getTx, getNodeHistory }
